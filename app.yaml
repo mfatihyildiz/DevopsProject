@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: mefatihyildiz/myapp1:latest
+          image: mefatihyildiz/webapp:latest
           imagePullPolicy: Always
           ports:
             - name: http
