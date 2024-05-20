@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>People</title>
+</head>
+<body>
+<h1>All People</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="person : ${people}">
+    <td><img th:src="@{{imgUrl}(imgUrl=${person.imgUrl})}" width="50px" height="50px"/></td>
+    <td th:text="${person.name}"></td>
+    <td th:text="${person.address}"></td>
+    <td>
+      <a th:href="@{/update/{id}(id=${person.id})}">Update</a>
+      <a th:href="@{/delete/{id}(id=${person.id})}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a href="/add">Add Person</a>
+</body>
+</html>

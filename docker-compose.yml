@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  my-app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://my-db:5432/swe304
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres_password
+    depends_on:
+      - my-db
+    networks:
+      - my-net
+
+  my-db:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=swe304
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my-net
+
+volumes:
+  postgres_data:
+networks:
+  my-net:
